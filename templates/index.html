@@ -132,16 +132,17 @@
         <form action="/" method="POST" enctype = "multipart/form-data">
 
             {% if price %}
-            <p>Price: ${{price}}</p>
-            <p>24 Hour Change: {{change}}%</p>
-            <p>Spread: ${{spread}}</p>
-            <p>24 Hour Volume: {{volume}}</p>
+            
 
             Cryptocurrency Symbol:
             <input type="text" name="asset" />
             <input type="submit" name="button1" value="Get Current Data" disabled />
             <input type="submit" name="reset1" value="Reset">
             <br><br>
+            <p>Price: ${{price}}</p>
+            <p>24 Hour Change: {{change}}%</p>
+            <p>Spread: ${{spread}}</p>
+            <p>24 Hour Volume: {{volume}}</p>
             {% else %}
             Cryptocurrency Symbol:
             <input type="text" name="asset" />
