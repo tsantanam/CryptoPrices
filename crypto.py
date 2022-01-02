@@ -28,8 +28,8 @@ def index():
             change_24h = response.json()['markets'][i[0]]['change_24h']
             spread = response.json()['markets'][i[0]]['spread']
             volume_24h = response.json()['markets'][i[0]]['volume_24h']
-
-    return render_template('index.html', price=price, change = change_24h, spread = spread, volume = volume_24h)
+            return render_template('index.html', price=price, change = change_24h, spread = spread, volume = volume_24h)
+    return render_template('index.html')
 
 
 
