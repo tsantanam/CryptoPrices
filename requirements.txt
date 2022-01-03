@@ -3,4 +3,6 @@ jinja2
 requests
 datetime
 matplotlib
+io
+base64
 gunicorn
