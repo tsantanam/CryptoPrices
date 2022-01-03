@@ -1,4 +1,6 @@
 flask
 jinja2
 requests
+datetime
+matplotlib
 gunicorn
