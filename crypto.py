@@ -39,7 +39,7 @@ def index():
 
             plt.xlabel("Date")
             plt.ylabel("Closing Price ($)")
-            plt.savefig('btchistprice.png')
+            plt.savefig('templates/btchistprice.png')
         if len(i) > 0:
             price = response.json()['markets'][i[0]]['price']
             change_24h = response.json()['markets'][i[0]]['change_24h']
