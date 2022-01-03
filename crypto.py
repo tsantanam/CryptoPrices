@@ -5,6 +5,8 @@ import matplotlib.dates as mdates
 import datetime as dt
 import io
 import base64
+from statsmodels.tsa.holtwinters import SimpleExpSmoothing
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from jinja2 import Template
 
 
@@ -19,6 +21,8 @@ def index():
         plot_url=0
         xaxis=0
         hist=0
+        ses=0
+        hwd=0
         api_url = "https://www.cryptingup.com/api/markets"
         response = requests.get(api_url)
         asset=request.form['asset']
@@ -38,6 +42,30 @@ def index():
             hist = [round(float(n),6) for n in hist]
             xaxis = list(response2.json()['bpi'].keys())
             xaxis = [dt.datetime.strptime(date, "%Y-%m-%d").date() for date in xaxis]
+            
+            # single exponential smoothing
+            
+            # prepare data
+            data = hist
+            # create class
+            model = SimpleExpSmoothing(data)
+            # fit model
+            model_fit = model.fit()
+            # make prediction
+            yhat = model_fit.predict(start=31)
+            
+            # double or triple exponential smoothing
+            
+            # prepare data
+            data = hist
+            # create class
+            model = ExponentialSmoothing(data,"add", damped=True)
+            # fit model
+            model_fit = model.fit()
+            # make prediction
+            yhat2 = model_fit.predict(start=31)
+            
+
             img = io.BytesIO()
             plt.plot(xaxis, hist, marker="o")
 
@@ -54,7 +82,7 @@ def index():
             change_24h = response.json()['markets'][i[0]]['change_24h']
             spread = response.json()['markets'][i[0]]['spread']
             volume_24h = response.json()['markets'][i[0]]['volume_24h']
-            return render_template('index.html', plot_url=plot_url, hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
+            return render_template('index.html', ses=yhat[0], hwd = yhat2[0], plot_url=plot_url, hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
     return render_template('index.html')
 
 
