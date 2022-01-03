@@ -23,6 +23,8 @@ def index():
         hist=0
         ses=0
         hwd=0
+        yhat=[0]
+        yhat2=[0]
         api_url = "https://www.cryptingup.com/api/markets"
         response = requests.get(api_url)
         asset=request.form['asset']
@@ -82,7 +84,7 @@ def index():
             change_24h = response.json()['markets'][i[0]]['change_24h']
             spread = response.json()['markets'][i[0]]['spread']
             volume_24h = response.json()['markets'][i[0]]['volume_24h']
-            return render_template('index.html', ses=yhat[0], hwd = yhat2[0], plot_url=plot_url, hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
+            return render_template('index.html', ses=round(float(yhat[0]),6), hwd = round(float(yhat2[0]),6), plot_url=plot_url, hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
     return render_template('index.html')
 
 
