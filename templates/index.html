@@ -154,27 +154,7 @@ border:3px solid #FF0000;
             
             <label for="asset">Cryptocurrency Symbol:</label>
 <select name="asset" id="asset">
-  <option value="BTC" selected>BTC</option>
-  <option value="ETH">ETH</option>
-    <option value="DOGE">DOGE</option>
-    <option value="LTC">LTC</option>
-    <option value="BUSD">BUSD</option>
-    <option value="FTM">FTM</option>
-    <option value="DOT">DOT</option>
-    <option value="BNB">BNB</option>
-    <option value="LUNA">LUNA</option>
-    <option value="CRV">CRV</option>
-    <option value="ATOM">ATOM</option>
-    <option value="USDT">USDT</option>
-    <option value="SAND">SAND</option>
-    <option value="GXS">GXS</option>
-    <option value="LINK">LINK</option>
-    <option value="SOL">SOL</option>
-    <option value="MATIC">MATIC</option>
-    <option value="AVAX">AVAX</option>
-    <option value="TRX">TRX</option>
-    <option value="SUSHI">SUSHI</option>
-    <option value="ALGO">ALGO</option>
+  <option value={{asset}} selected>{{asset}}</option>
 </select>
             
             
@@ -201,10 +181,32 @@ border:3px solid #FF0000;
   </tr>
 </table>
             {% else %}
-            Cryptocurrency Symbol:
-            <input type="text" name="asset" />
-            <input type="submit" name="button1" value="Get Current Data"/>
-            <input type="submit" name="reset1" value="Reset">
+            
+            
+            <label for="asset">Cryptocurrency Symbol:</label>
+<select name="asset" id="asset">
+  <option value="BTC">BTC</option>
+  <option value="ETH">ETH</option>
+    <option value="DOGE">DOGE</option>
+    <option value="LTC">LTC</option>
+    <option value="BUSD">BUSD</option>
+    <option value="FTM">FTM</option>
+    <option value="DOT">DOT</option>
+    <option value="BNB">BNB</option>
+    <option value="LUNA">LUNA</option>
+    <option value="CRV">CRV</option>
+    <option value="ATOM">ATOM</option>
+    <option value="USDT">USDT</option>
+    <option value="SAND">SAND</option>
+    <option value="GXS">GXS</option>
+    <option value="LINK">LINK</option>
+    <option value="SOL">SOL</option>
+    <option value="MATIC">MATIC</option>
+    <option value="AVAX">AVAX</option>
+    <option value="TRX">TRX</option>
+    <option value="SUSHI">SUSHI</option>
+    <option value="ALGO">ALGO</option>
+</select>
 
             {% endif %}
 
