@@ -139,10 +139,22 @@
             <input type="submit" name="button1" value="Get Current Data" disabled />
             <input type="submit" name="reset1" value="Reset">
             <br><br>
-            <p>Price: ${{price}}</p>
-            <p>24 Hour Change: {{change}}%</p>
-            <p>Spread: ${{spread}}</p>
-            <p>24 Hour Volume: {{volume}}</p>
+            
+            
+            <table>
+  <tr>
+    <th>Price</th>
+    <th>24 Hour Change</th>
+    <th>Spread</th>
+    <th>24 Hour Volume</th>
+  </tr>
+  <tr>
+    <td>${{price}}</td>
+    <td>{{change}}%</td>
+    <td>${{spread}}</td>
+    <td>{{volume}}</td>
+  </tr>
+</table>
             {% else %}
             Cryptocurrency Symbol:
             <input type="text" name="asset" />
