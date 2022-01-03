@@ -3,6 +3,8 @@ import requests
 from matplotlib import pyplot as plt
 import matplotlib.dates as mdates
 import datetime as dt
+import io
+import base64
 from jinja2 import Template
 
 
@@ -33,6 +35,7 @@ def index():
             hist = [round(float(n),6) for n in hist]
             xaxis = list(response2.json()['bpi'].keys())
             xaxis = [dt.datetime.strptime(date, "%Y-%m-%d").date() for date in xaxis]
+            img = io.BytesIO()
             plt.plot(xaxis, hist, marker="o")
 
             dtFmt = mdates.DateFormatter('%m-%d')
@@ -40,13 +43,15 @@ def index():
 
             plt.xlabel("Date")
             plt.ylabel("Closing Price ($)")
-            #plt.savefig('templates/btchistprice.png')
+            plt.savefig(img,format='png')
+            img.seek(0)
+            plot_url = base64.b64encode(img.getvalue()).decode()
         if len(i) > 0:
             price = response.json()['markets'][i[0]]['price']
             change_24h = response.json()['markets'][i[0]]['change_24h']
             spread = response.json()['markets'][i[0]]['spread']
             volume_24h = response.json()['markets'][i[0]]['volume_24h']
-            return render_template('index.html', hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
+            return render_template('index.html', plot_url=plot_url, hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
     return render_template('index.html')
 
 
