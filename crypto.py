@@ -30,6 +30,7 @@ def index():
             api_url2 = "https://api.coindesk.com/v1/bpi/historical/close.json"
             response2 = requests.get(api_url2)
             hist = list(response2.json()['bpi'].values())
+            hist = [round(float(n),6) for n in hist]
             xaxis = list(response2.json()['bpi'].keys())
             xaxis = [dt.datetime.strptime(date, "%Y-%m-%d").date() for date in xaxis]
             plt.plot(xaxis, hist, marker="o")
