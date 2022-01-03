@@ -181,10 +181,14 @@ border:3px solid #FF0000;
   </tr>
 </table>
             <table class="center">
+                <tr>
+    <th>Date</th>
+    <th>Closing Price</th>
+  </tr>
 {% for item in xaxis %}
 <TR>
    <td>{{item}}</td>
-   <td>{{ hist[loop.index0] }}</td>
+   <td>${{ hist[loop.index0] }}</td>
 </TR>
 {% endfor %}
 </table>
