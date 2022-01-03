@@ -180,7 +180,14 @@ border:3px solid #FF0000;
     <td>{{volume}}</td>
   </tr>
 </table>
-            <img src="/templates/btchistprice.png" alt="My Image" />
+            <table class="center">
+{% for item in xaxis %}
+<TR>
+   <td>{{item}}</td>
+   <td>{{ hist[loop.index0] }}</td>
+</TR>
+{% endfor %}
+</table>
             {% else %}
             
             
