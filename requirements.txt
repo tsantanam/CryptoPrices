@@ -3,4 +3,5 @@ jinja2
 requests
 datetime
 matplotlib
+statsmodels
 gunicorn
