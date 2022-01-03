@@ -16,6 +16,9 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if 'button1' in request.form:
+        plot_url=0
+        xaxis=0
+        hist=0
         api_url = "https://www.cryptingup.com/api/markets"
         response = requests.get(api_url)
         asset=request.form['asset']
