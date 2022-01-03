@@ -1,5 +1,8 @@
 from flask import Flask, render_template, jsonify, request, Response, url_for, redirect
 import requests
+from matplotlib import pyplot as plt
+import matplotlib.dates as mdates
+import datetime as dt
 from jinja2 import Template
 
 
@@ -23,6 +26,20 @@ def index():
             else:
                 h += 1
 
+        if asset=='BTC':
+            api_url2 = "https://api.coindesk.com/v1/bpi/historical/close.json"
+            response2 = requests.get(api_url2)
+            hist = list(response2.json()['bpi'].values())
+            xaxis = list(response2.json()['bpi'].keys())
+            xaxis = [dt.datetime.strptime(date, "%Y-%m-%d").date() for date in xaxis]
+            plt.plot(xaxis, hist, marker="o")
+
+            dtFmt = mdates.DateFormatter('%m-%d')
+            plt.gca().xaxis.set_major_formatter(dtFmt)
+
+            plt.xlabel("Date")
+            plt.ylabel("Closing Price ($)")
+            plt.savefig('btchistprice.png')
         if len(i) > 0:
             price = response.json()['markets'][i[0]]['price']
             change_24h = response.json()['markets'][i[0]]['change_24h']
