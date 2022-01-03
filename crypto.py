@@ -45,7 +45,7 @@ def index():
             change_24h = response.json()['markets'][i[0]]['change_24h']
             spread = response.json()['markets'][i[0]]['spread']
             volume_24h = response.json()['markets'][i[0]]['volume_24h']
-            return render_template('index.html', hist=hist, xaxis=xais, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
+            return render_template('index.html', hist=hist, xaxis=xaxis, asset = asset, price=round(float(price),6), change = round(float(change_24h),6), spread = round(float(spread),6), volume = round(float(volume_24h),6))
     return render_template('index.html')
 
 
